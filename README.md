@@ -1,69 +1,128 @@
-# front-end
+# Front-end.
 
-## Build Setup
+### 필수 설치 파일
 
-```bash
-# install dependencies
-$ npm install
+프로젝트를 체크아웃 하기 전에 다음의 소프트웨어가 설치되어있는지 확인해주시기 바랍니다.
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+1. [Git SCM](https://git-scm.com/)
+2. [NodeJS](https://nodejs.org/ko/): NodeJS는 14.17.0 LTS버전을 설치하는 것을 추천합니다.
+    npm 버전은 6.14.13
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+### 소스 편집 툴
 
-# generate static project
-$ npm run generate
+소스 편집 툴은 어느 툴을 사용해도 무방합니다. 팀 차원에서는 [Visual Studio Code](https://code.visualstudio.com/) 또는 [WebStorm](https://www.jetbrains.com/ko-kr/webstorm/)를 추천합니다.
+
+***이클립스는 추천되지 않습니다.***
+
+## 체크아웃
+
+체크아웃: 프로젝트를 체크아웃 받습니다.
+```console
+# git clone https://gitlab.skyware.co.kr/lotte-gfr/front-office/kway-front.git
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+브랜치 변경: 마스터 브랜치로의 직접적인 커밋 및 푸시는 금지되어있습니다. 개별 브랜치를 생성하여 사용해주십시오.
 
-## Special Directories
+```console
+# git checkout -b <브랜치 명>
+브랜치 명: Gitlab 로그인 ID (이메일 주소인 경우 도메인 제외)
+```
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+변경된 파일 목록 확인
+```console
+# git status
+```
 
-### `assets`
+Commit stage에 파일 추가
+```console
+# git add <파일명>
+개별 파일 추가
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+# git add *
+변경된 파일 모두 추가
+```
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+Commit
+```console
+# git commit -m "커밋 메시지"
+```
 
-### `components`
+Push
+```console
+# git push --set-upstream origin <브랜치 명>
+최초 Push 시
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+# git push
+upstream 설정 후
+```
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+Master 현행화
+```console
+# git merge origin/master
+```
 
-### `layouts`
+Git에 대한 더 많은 정보 [알아보기](https://git-scm.com/book/ko/v2)
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
+## 라이브러리 설치
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+프로젝트를 구동하기 위해선 NPM 라이브러리들을 설치해야 합니다.
 
+```console
+; node-sass는 global에 설치해야 됨
+# npm install node-sass@4.14.170 -g
+# node-sass 버전 4.14.170 버전은 안보이는데 수정해주세요. 저는 4.14.0을 설치했습니다.
 
-### `pages`
+# npm install
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+NPM 라이브러리 설치
+```
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+## dotenv 설정
 
-### `plugins`
+프로젝트 Checkout 후 Root 폴더에 보면 `.env.sample`이라는 파일이 있습니다.
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+개발환경에서 프로젝트를 정상적으로 구동하기 위해선 해당 파일을 `.env`라는 파일로 복사해 넣어야 합니다.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
+***주의: .env.sample 파일을 삭제하거나, .env 파일을 Push하지 마시오!***
 
-### `static`
+### dotenv 구조
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+| Env | Description |
+| --- | ----------- |
+| `API_URL` | API Url 입니다. 기본 값은 `http://localhost:8080`으로 설정되어있으며, Context Path의 마지막에 반드시 `슬래시(/)`를 빼 주시기 바랍니다.|
+| `SITE_URL` | 구동되는 사이트 Url. 기본 값은 `http://localhost:3000`으로 설정되어있으며, SNS 로그인 및 서버 리소스 Url 작성 시 사용됩니다. *필수* |
+| `CDN_URL` | CDN 서비스의 Url. 기본 값은 `http://localhost:3000`으로 설정되어있으며, 이미지 등 리소스 Url 작성 시 사용됩니다. *필수* |
+| `KAKAO_API_KEY` | 카카오 JavaScript API key. [카카오 개발자 사이트](https://developers.kakao.com/)에 등록된 애플리케이션의 JavaScript API Key. |
+| `NAVER_CLIENT_ID` | 네이버 Client ID. [네이버 개발자 사이트](https://developers.naver.com/main/)에 등록된 애플리케이션의 Client ID. |
+| `ORDER_STORAGE_KEY` | 주문 ID 저장 스토리지 키. (기본 값: SEC_ORDER_ID) |
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+### Vue에서 불러올 수 있는 env 파라미터
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
+Vue에서 해당 env 파라미터를 다음과 같은 방법으로 호출할 수 있습니다
 
-### `store`
+```vue
+<script>
+export default {
+  mounted() {
+    console.log(this.$env.siteUrl); // http://localhost:3000
+  }
+}
+</script>
+```
 
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
+하지만 보안 상의 이유로 Vue에서 모든 파라미터를 받아볼 수 있는 것은 아니며 일부 파라미터만 불러올 수 있습니다.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+* `siteUrl`: `SITE_URL`
+* `cdnUrl`: `CDN_URL`
+* `siteNo`: `SITE_NO`
+* `brandNo`: `BRAND_NO`
+
+## 프로젝트 실행하기
+
+프로젝트는 다음과 같은 명령어로 실행할 수 있습니다.
+```console
+# npm run dev
+프로젝트 실행
+```
+
+실행 후 [http://localhost:3000](http://localhost:3000)에서 확인하실 수 있습니다.
