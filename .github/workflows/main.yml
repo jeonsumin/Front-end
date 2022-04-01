@@ -3,9 +3,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
     
 jobs: #수행할 일 목록
   build:
