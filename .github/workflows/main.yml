@@ -21,5 +21,4 @@ jobs: #수행할 일 목록
         script: |
           cd /home/front-end
           git pull
-          cp -f ${{ secrets.ENV }} .env
           exit
