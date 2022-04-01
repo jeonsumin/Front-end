@@ -1,0 +1,24 @@
+name: CI
+# 이 Workflow는 저장소에 Push가 되면 실행되도록 한다. 
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+jobs: #수행할 일 목록
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password 	# 수행 단계 식별이름  
+      uses: appleboy/ssh-action@master 			# ssh 접속을 사용  
+      with: 	
+        host: ${{ secrets.HOST }}
+        port: ${{ secrets.PORT }}
+        username: ${{ secrets.USERNAME}}
+        password: ${{ secrets.PASSWORD }}
+        script: |
+          cd /home/front-end
+          git pull
+          exit
