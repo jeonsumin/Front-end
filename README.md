@@ -18,7 +18,7 @@
 
 체크아웃: 프로젝트를 체크아웃 받습니다.
 ```console
-# git clone https://gitlab.skyware.co.kr/lotte-gfr/front-office/kway-front.git
+# git clone https://github.com/jeonsumin/front-end.git
 ```
 
 브랜치 변경: 마스터 브랜치로의 직접적인 커밋 및 푸시는 금지되어있습니다. 개별 브랜치를 생성하여 사용해주십시오.
