@@ -21,18 +21,18 @@ export default ({ $axios, $device, redirect, $cookies, app: { router, $modal } }
 //     }
 //   );
 
-  $axios.onError((error) => {
-    if (error.response.status === 401) {
-      return redirect("/");
-    } else if (error.response.status === 403) {
-      if (path == "/login") {
-        return;
-      } else {
-        $cookies.set("LOGIN_REDIRECT", path);
-        return redirect("/login");
-      }
-    }
-  });
+  // $axios.onError((error) => {
+  //   if (error.response.status === 401) {
+  //     return redirect("/");
+  //   } else if (error.response.status === 403) {
+  //     if (path == "/login") {
+  //       return;
+  //     } else {
+  //       $cookies.set("LOGIN_REDIRECT", path);
+  //       return redirect("/login");
+  //     }
+  //   }
+  // });
 
   router.beforeEach((to, from, next) => {
     try {

@@ -18,7 +18,6 @@
 
 체크아웃: 프로젝트를 체크아웃 받습니다.
 ```console
-# git clone https://github.com/jeonsumin/front-end.git
 ```
 
 브랜치 변경: 마스터 브랜치로의 직접적인 커밋 및 푸시는 금지되어있습니다. 개별 브랜치를 생성하여 사용해주십시오.
@@ -54,11 +53,6 @@ Push
 
 # git push
 upstream 설정 후
-```
-
-Master 현행화
-```console
-# git merge origin/master
 ```
 
 Git에 대한 더 많은 정보 [알아보기](https://git-scm.com/book/ko/v2)
